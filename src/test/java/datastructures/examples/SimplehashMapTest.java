@@ -25,6 +25,10 @@ public class SimplehashMapTest {
     assertThat(shp.values()).containsExactlyInAnyOrder("bar", "buzz", "FIZZ", "FIZZ");
     assertThat(shp.keySet()).containsOnlyOnce("foo", "fizz", "FIZZ", "duplicate");
     assertThat(shp.containsKey("random")).isFalse();
+    assertThat(shp.size()).isEqualTo(4);
+    shp.remove("fizz");
+    assertThat(shp.size()).isEqualTo(3);
+    assertThat(shp.containsKey("fizz")).isFalse();
 
 
   }

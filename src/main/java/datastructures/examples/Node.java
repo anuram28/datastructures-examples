@@ -1,11 +1,11 @@
 package datastructures.examples;
 
-public class Entry<K,V>  {
+public class Node<K,V>  {
   private K key;
   private V value;
-  private Entry<K,V> next;
+  private Node<K,V> next;
 
-  public Entry(K key,V value){
+  public Node(K key, V value){
     this.key = key;
     this.value = value;
   }
@@ -17,7 +17,7 @@ public class Entry<K,V>  {
   public V getValue(){
     return this.value;
   }
-  public Entry<K,V> getNext(){
+  public Node<K,V> getNext(){
     return this.next;
   }
 
@@ -29,7 +29,7 @@ public class Entry<K,V>  {
     this.value = value;
   }
 
-  public void setNext(Entry<K,V> next){
+  public void setNext(Node<K,V> next){
     this.next = next;
   }
 }
