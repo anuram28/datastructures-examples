@@ -34,14 +34,14 @@ public class SimpleHashMap<V> {
       Node<String, V> prev = null;
       Node<String, V> tp = firstNode;
       while (tp != null) {
-        if (tp.getKey().equals(key)) {
-          tp.setValue(value);
+        if (tp.key.equals(key)) {
+          tp.value =value;
           return 1;
         }
         prev = tp;
-        tp = tp.getNext();
+        tp = tp.next;
       }
-      prev.setNext(new Node<>(key, value));
+      prev.next = new Node<>(key, value);
       this.counter++;
 
     }
@@ -54,10 +54,10 @@ public class SimpleHashMap<V> {
     Node<String, V> firstNode = buckets[bucketIndex];
     Node<String, V> tp = firstNode;
     while (tp != null) {
-      if (tp.getKey().equals(key)) {
-        return tp.getValue();
+      if (tp.key.equals(key)) {
+        return tp.value;
       }
-      tp = tp.getNext();
+      tp = tp.next;
     }
     return null;
   }
@@ -68,10 +68,10 @@ public class SimpleHashMap<V> {
     Node<String, V> firstNode = buckets[bucketIndex];
 
     while (firstNode != null) {
-      if (firstNode.getKey().equals(key)) {
+      if (firstNode.key.equals(key)) {
         return true;
       }
-      firstNode = firstNode.getNext();
+      firstNode = firstNode.next;
     }
     return false;
   }
@@ -82,8 +82,8 @@ public class SimpleHashMap<V> {
     for (Node<String, V> node : buckets) {
 
       while (node != null) {
-        keySet.add(node.getKey());
-        node = node.getNext();
+        keySet.add(node.key);
+        node = node.next;
       }
     }
     return keySet;
@@ -93,8 +93,8 @@ public class SimpleHashMap<V> {
     List<V> values = new ArrayList<>();
     for (Node<String, V> node : buckets) {
       while (node != null) {
-        values.add(node.getValue());
-        node = node.getNext();
+        values.add(node.value);
+        node = node.next;
       }
     }
     return values;
@@ -106,15 +106,15 @@ public class SimpleHashMap<V> {
 
     Node prev = null;
     while (tp != null) {
-      if (tp.getKey().equals(key)) {
+      if (tp.key.equals(key)) {
         if (prev != null) {
-          prev.setNext(tp.getNext());
+          prev.next = tp.next;
         }
         counter--;
         return true;
       } else {
         prev = tp;
-        tp = tp.getNext();
+        tp = tp.next;
       }
     }
     return false;
@@ -130,5 +130,16 @@ public class SimpleHashMap<V> {
     return asciiVal - 65;
   }
 
+  private static class Node<K,V> {
+    private K key;
+    private V value;
+    private Node<K,V> next;
+
+    private Node(K key, V value){
+      this.key = key;
+      this.value = value;
+    }
+
+  }
 
 }
